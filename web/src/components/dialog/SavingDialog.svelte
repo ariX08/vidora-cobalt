@@ -150,12 +150,12 @@
 
     .dialog-inner-container {
         overflow-y: scroll;
-        gap: 8px;
+        gap: 10px;
         width: 100%;
     }
 
     .popup-body {
-        max-width: 340px;
+        max-width: 360px;
         width: calc(100% - var(--padding) - var(--dialog-padding) * 2);
         max-height: 70%;
         margin: calc(var(--padding) / 2);
@@ -165,7 +165,6 @@
         position: absolute;
         top: -126px;
         right: 0;
-        /* simulate meowbalt being behind the popup */
         clip-path: inset(0px 0px 14px 0px);
     }
 
@@ -173,30 +172,33 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: calc(var(--padding) / 2);
+        gap: 10px;
         color: var(--secondary);
     }
 
     .popup-header :global(svg) {
-        height: 21px;
-        width: 21px;
+        height: 22px;
+        width: 22px;
+        color: var(--accent);
     }
 
     .popup-title {
         color: var(--secondary);
-        font-size: 19px;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
     }
 
     .action-buttons {
         display: flex;
         flex-direction: row;
-        gap: calc(var(--padding) / 2);
+        gap: 8px;
         position: relative;
     }
 
     .body-text {
         font-size: 13px;
-        font-weight: 500;
+        font-weight: 450;
         line-height: 1.5;
         color: var(--gray);
         white-space: pre-wrap;
