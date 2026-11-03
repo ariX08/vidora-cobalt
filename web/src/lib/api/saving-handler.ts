@@ -9,6 +9,7 @@ import { downloadFile } from "$lib/download";
 import { createDialog } from "$lib/state/dialogs";
 import { downloadButtonState } from "$lib/state/omnibox";
 import { createSavePipeline } from "$lib/task-manager/queue";
+import { handleYouTube } from "$lib/api/youtube-handler";
 
 import type { CobaltSaveRequestBody } from "$lib/types/api";
 
@@ -41,10 +42,16 @@ export const savingHandler = async ({ url, request, oldTaskId }: SavingHandlerAr
 
     if (!request && !url) return;
 
+    // YouTube → custom vidora-api
+    const targetUrl = url || request?.url;
+    if (targetUrl) {
+        const handled = await handleYouTube(targetUrl);
+        if (handled) return;
+    }
+
     const selectedRequest = request || {
         url: url!,
 
-        // not lazy cuz default depends on device capabilities
         localProcessing: get(settings).save.localProcessing,
 
         alwaysProxy: getSetting("save", "alwaysProxy"),
