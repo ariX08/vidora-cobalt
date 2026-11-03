@@ -1,6 +1,5 @@
 <script lang="ts">
     import { t } from "$lib/i18n/translations";
-    import { contacts, docs } from "$lib/env";
 
     import SectionHeading from "$components/misc/SectionHeading.svelte";
 </script>
@@ -22,7 +21,7 @@ No ads, trackers, paywalls, or other nonsense. Just a clean, fast tool that work
     sectionId="motivation"
 />
 
-Vidora was built by Vidora INC. to give people a private, reliable way to save media without the usual clutter of ads and trackers found in other downloaders.
+Vidora was built by [**ARITRA.DESIGN**](https://arix.faltuworkonly91.workers.dev) to give people a private, reliable way to save media without the usual clutter of ads and trackers found in other downloaders.
 We believe tools should be simple, safe, and respectful of user privacy.
 </section>
 
@@ -40,16 +39,4 @@ When extra processing is needed (remuxing or transcoding), Vidora prefers to pro
 If your device cannot handle local processing, server-side processing is used instead. In that case media is streamed directly to you and never stored on disk.
 
 You can enable forced tunneling in settings to increase privacy even further. When enabled, all downloads go through the tunnel so your network provider only sees traffic to a Vidora instance.
-</section>
-
-<section id="community">
-<SectionHeading
-    title={$t("about.heading.community")}
-    sectionId="community"
-/>
-
-Vidora is used by creators, educators, and everyday users who want a clean way to save content.
-You can check the source code and contribute [on GitHub]({contacts.github}) at any time.
-
-If you run your own processing instance, you can add it in the instance settings.
 </section>
