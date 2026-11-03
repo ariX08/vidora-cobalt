@@ -3,7 +3,7 @@
   "services": {
     "web": {
       "root": "web",
-      "framework": "sveltekit"
+      "framework": "sveltekit-1"
     },
     "api": {
       "root": ".",
