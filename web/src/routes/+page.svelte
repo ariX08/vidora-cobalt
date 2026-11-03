@@ -11,10 +11,10 @@
     <meta property="og:title" content={$t("general.cobalt")} />
 </svelte:head>
 
-<div id="cobalt-save-container" class="center-column-container">
+<div id="vidora-save-container" class="center-column-container">
     <SupportedServices />
     <main
-        id="cobalt-save"
+        id="vidora-save"
         tabindex="-1"
         data-first-focus
     >
@@ -28,38 +28,49 @@
 </div>
 
 <style>
-    #cobalt-save-container {
+    #vidora-save-container {
         padding: var(--padding);
         overflow: hidden;
     }
 
-    #cobalt-save {
+    #vidora-save {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         width: 100%;
         height: 100%;
-        gap: 15px;
+        gap: 18px;
     }
 
     #terms-note {
         bottom: 0;
         color: var(--gray);
-        font-size: 12px;
+        font-size: 12.5px;
         text-align: center;
-        padding-bottom: 6px;
+        padding-bottom: 8px;
+        font-weight: 450;
+        letter-spacing: -0.01em;
+    }
+
+    #terms-note a {
+        color: var(--accent);
+        text-decoration: none;
         font-weight: 500;
     }
 
+    #terms-note a:hover {
+        text-decoration: underline;
+    }
+
     @media screen and (max-width: 535px) {
-        #cobalt-save-container {
+        #vidora-save-container {
             padding-top: calc(var(--padding) / 2);
         }
 
         #terms-note {
-            font-size: 11px;
-            padding-bottom: 0;
+            font-size: 11.5px;
+            padding-bottom: 2px;
         }
     }
 </style>
