@@ -1,5 +1,5 @@
 <div id="vidora-logo-sidebar">
-    <img src="/brand-logo.png" alt="Vidora" width="36" height="36" />
+    <img src="/brand-logo.png" alt="Vidora" width="48" height="48" />
 </div>
 
 <style>
@@ -12,10 +12,10 @@
     }
 
     #vidora-logo-sidebar img {
-        width: 36px;
-        height: 36px;
+        width: 48px;
+        height: 48px;
         object-fit: contain;
-        border-radius: 8px;
+        border-radius: 10px;
         user-select: none;
         pointer-events: none;
     }
