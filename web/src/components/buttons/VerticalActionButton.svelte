@@ -23,22 +23,21 @@
     .button.vertical {
         flex-direction: column;
         line-height: 1;
-        padding: var(--padding);
-        gap: calc(var(--padding) / 2);
+        padding: 14px 12px;
+        gap: 8px;
+        font-size: 13px;
+        letter-spacing: -0.01em;
     }
 
     .button.vertical :global(svg) {
-        width: 24px;
-        height: 24px;
+        width: 22px;
+        height: 22px;
+        stroke-width: 1.7px;
+        color: var(--secondary);
     }
 
     .button.vertical.fill {
         width: 100%;
-        padding: var(--padding) 0;
-    }
-
-    .button.vertical :global(svg) {
-        stroke-width: 1.8px;
-        color: var(--secondary);
+        padding: 14px 0;
     }
 </style>
