@@ -1,17 +1,12 @@
 {
     "page.general": "about Vidora",
 
-    "page.community": "community & support",
-
     "page.privacy": "privacy policy",
     "page.terms": "terms and ethics",
-    "page.credits": "thanks & licenses",
 
     "heading.general": "general terms",
-    "heading.licenses": "licenses",
     "heading.summary": "save what you love",
     "heading.privacy_efficiency": "privacy & efficiency",
-    "heading.community": "open community",
     "heading.local": "local processing",
     "heading.saving": "saving",
     "heading.encryption": "encryption",
@@ -19,17 +14,5 @@
     "heading.cloudflare": "web privacy & security",
     "heading.responsibility": "user responsibilities",
     "heading.abuse": "reporting abuse",
-    "heading.motivation": "motivation",
-    "heading.testers": "beta testers",
-    "heading.partners": "partners",
-
-    "support.github": "check out Vidora's source code, contribute changes, or report issues",
-    "support.discord": "chat with the community about Vidora or ask for help",
-    "support.twitter": "follow Vidora updates",
-    "support.telegram": "stay up to date with latest Vidora updates",
-    "support.bluesky": "follow Vidora updates on bluesky",
-
-    "support.description.issue": "if you want to report a bug or some other recurring issue, please do it on github.",
-    "support.description.help": "use available community channels for any other questions.",
-    "support.description.best-effort": "all support is best effort and not guaranteed, a reply might take some time."
+    "heading.motivation": "motivation"
 }
