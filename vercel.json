@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd web && pnpm install && pnpm build",
-  "outputDirectory": "web/build",
-  "installCommand": "pnpm install --filter=@imput/cobalt-web...",
-  "framework": null
+  "buildCommand": "pnpm build",
+  "outputDirectory": "build",
+  "installCommand": "pnpm install",
+  "framework": "sveltekit"
 }
