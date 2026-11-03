@@ -9,10 +9,6 @@
     $: backdropVisible = $dialogs.length > 0;
 </script>
 
-<!--
-    this is the cleanest way of passing props without typescript throwing a fit.
-    more info here: https://github.com/microsoft/TypeScript/issues/46680
--->
 <div id="dialog-holder">
     <NoScriptDialog />
     {#each $dialogs as dialog}
@@ -81,13 +77,13 @@
 
         background-color: var(--dialog-backdrop);
 
-        backdrop-filter: blur(7px);
-        -webkit-backdrop-filter: blur(7px);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
 
         opacity: 0;
 
         will-change: opacity;
-        transition: opacity 0.2s;
+        transition: opacity 0.25s ease;
     }
 
     #dialog-backdrop.visible {
@@ -100,32 +96,31 @@
     }
 
     :global(.dialog-body) {
-        --dialog-padding: 18px;
+        --dialog-padding: 20px;
 
         display: flex;
         flex-direction: column;
         align-items: center;
 
         background: var(--popup-bg);
-        box-shadow: 0 0 0 2px var(--popup-stroke) inset;
-        border-radius: 29px;
-
-        filter: drop-shadow(0 0 40px var(--button));
+        border: 1px solid var(--popup-stroke);
+        border-radius: 24px;
+        box-shadow: var(--glass-shadow);
 
         padding: var(--dialog-padding);
 
         position: relative;
-        will-change: transform, opacity, filter;
+        will-change: transform, opacity;
     }
 
     :global(dialog.open .dialog-body) {
-        animation: modal-in 0.35s;
-        animation-delay: 0.06s;
+        animation: modal-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+        animation-delay: 0.04s;
         animation-fill-mode: backwards;
     }
 
     :global(dialog.closing .dialog-body) {
-        animation: modal-out 0.15s;
+        animation: modal-out 0.18s ease;
         opacity: 0;
     }
 
@@ -135,7 +130,7 @@
         }
 
         :global(dialog.open .dialog-body) {
-            animation: modal-in-mobile 0.4s;
+            animation: modal-in-mobile 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         :global(dialog .dialog-body) {
@@ -146,19 +141,18 @@
                     )
                 )
             ) !important;
-            box-shadow: 0 0 0 2px var(--popup-stroke) inset;
         }
     }
 
     @keyframes modal-in {
         from {
-            transform: scale(0.8);
+            transform: scale(0.92);
             opacity: 0;
         }
-        35% {
+        40% {
             opacity: 1;
         }
-        50% {
+        70% {
             transform: scale(1.01);
         }
         100% {
@@ -172,7 +166,7 @@
         }
         to {
             opacity: 0;
-            transform: scale(0.9);
+            transform: scale(0.94);
             visibility: hidden;
         }
     }
@@ -183,13 +177,13 @@
             opacity: 0;
         }
         1% {
-            transform: translateY(200px);
+            transform: translateY(180px);
         }
-        35% {
+        40% {
             opacity: 1;
         }
-        50% {
-            transform: translateY(-5px);
+        70% {
+            transform: translateY(-4px);
         }
         100% {
             transform: translateY(0px);
