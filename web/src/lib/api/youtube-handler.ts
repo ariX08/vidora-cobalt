@@ -1,6 +1,6 @@
 import { get } from "svelte/store";
 import { t } from "$lib/i18n/translations";
-import { downloadFile } from "$lib/download";
+import { downloadFile, openFile, forceDownload } from "$lib/download";
 import { createDialog } from "$lib/state/dialogs";
 import { downloadButtonState } from "$lib/state/omnibox";
 import settings from "$lib/state/settings";
@@ -85,12 +85,33 @@ export async function handleYouTube(url: string): Promise<boolean> {
 
         const fileUrl = `${YT_API}/api/file/${jobId}`;
 
-        await downloadFile({
-          url: fileUrl,
-          urlType: "redirect",
-        });
+        // Fetch as blob so we can trigger a real file download
+        // even after user activation has expired (polling takes time)
+        try {
+          const fileRes = await fetch(fileUrl);
+          if (!fileRes.ok) throw new Error("file fetch failed");
 
-        return true;
+          const blob = await fileRes.blob();
+          const disposition = fileRes.headers.get("content-disposition") || "";
+          const match = disposition.match(/filename\*?=(?:UTF-8'')?"?([^";]+)/i);
+          const filename =
+            (match && decodeURIComponent(match[1])) ||
+            job.filename ||
+            (type === "audio" ? "vidora-audio.mp3" : "vidora-video.mp4");
+
+          const file = new File([blob], filename, {
+            type: blob.type || (type === "audio" ? "audio/mpeg" : "video/mp4"),
+          });
+
+          openFile(file);
+
+          // Also offer share/copy dialog without the "browser stopped it" warning
+          return downloadFile({ file });
+        } catch {
+          // Fallback: open URL directly
+          forceDownload(fileUrl, job.filename);
+          return downloadFile({ url: fileUrl, urlType: "redirect" });
+        }
       }
     }
 
