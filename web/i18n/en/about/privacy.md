@@ -11,10 +11,10 @@
     sectionId="general"
 />
 
-cobalt's privacy policy is simple: we don't collect or store anything about you.
+Vidora's privacy policy is simple: we don't collect or store anything about you.
 what you do is solely your business, not ours or anyone else's.
 
-these terms are applicable only when using the official cobalt instance.
+these terms are applicable when using the official Vidora service.
 in other cases, you may need to contact the instance hoster for accurate info.
 </section>
 
@@ -35,11 +35,11 @@ they are explicitly marked as such whenever applicable.
     sectionId="saving"
 />
 
-when using saving functionality, cobalt may need to proxy or remux/transcode files.
+when using saving functionality, Vidora may need to proxy or remux/transcode files.
 if that's the case, then a temporary tunnel is created for this purpose
 and minimal required information about the media is stored for 90 seconds.
 
-on an unmodified & official cobalt instance,
+on the official Vidora service,
 **all tunnel data is encrypted with a key that only the end user has access to**.
 
 encrypted tunnel data may include:
@@ -50,18 +50,14 @@ encrypted tunnel data may include:
 - minimal information about the original request that may be used in case of an URL failure during the tunnelling process.
 
 this data is irreversibly purged from server's RAM after 90 seconds.
-no one has access to cached tunnel data, even instance owners,
-as long as cobalt's source code is not modified.
+no one has access to cached tunnel data, even instance owners.
 
 media data from tunnels is never stored/cached anywhere.
 everything is processed live, even during remuxing and transcoding.
-cobalt tunnels function like an anonymous proxy.
+Vidora tunnels function like an anonymous proxy.
 
 if your device supports local processing,
 then encrypted tunnel info includes way less info, because it's returned to client instead.
-
-see the [related source code on github](https://github.com/imputnet/cobalt/tree/main/api/src/stream)
-to learn more about how it works.
 </section>
 
 <section id="encryption">
@@ -84,9 +80,9 @@ keys are generated uniquely for each requested tunnel.
 />
 
 we use [plausible](https://plausible.io/) to get an approximate number
-of active cobalt users, fully anonymously. no identifiable information about
+of active Vidora users, fully anonymously. no identifiable information about
 you or your requests is ever stored. all data is anonymized and aggregated.
-we self-host and manage the [plausible instance](https://{env.PLAUSIBLE_HOST}/) that cobalt uses.
+we self-host and manage the [plausible instance](https://{env.PLAUSIBLE_HOST}/) that Vidora uses.
 
 plausible doesn't use cookies and is fully compliant with GDPR, CCPA, and PECR.
 
@@ -106,7 +102,7 @@ if you opt out, the plausible script will not be loaded at all.
 we use cloudflare services for:
 - ddos & abuse protection.
 - bot protection (cloudflare turnstile).
-- hosting & deploying the statically rendered web app (cloudflare workers).
+- hosting & deploying the web app.
 
 all of these are required to provide the best experience for everyone.
 cloudflare is the most private & reliable provider for all mentioned solutions that we know of.
