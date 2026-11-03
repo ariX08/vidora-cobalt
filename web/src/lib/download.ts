@@ -51,20 +51,39 @@ export const shareFile = async (file: File) => {
     });
 }
 
-export const openURL = (url: string, hasDialog = false) => {
+/** Force a download using an invisible <a> element (much more reliable than window.open) */
+export const forceDownload = (url: string, filename?: string) => {
     if (!['http:', 'https:'].includes(new URL(url).protocol)) {
         return alert('error: invalid url!');
     }
 
-    const open = window.open(url, "_blank", "noopener,noreferrer");
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
 
-    /* if new tab got blocked by user agent, show a saving dialog */
-    if (!open && !hasDialog) {
-        return openSavingDialog({
-            url,
-            body: get(t)("dialog.saving.blocked")
-        });
+    // Try to force download when possible
+    if (filename) {
+        a.download = filename;
+    } else {
+        // Extract a reasonable filename from the URL if possible
+        try {
+            const pathname = new URL(url).pathname;
+            const name = pathname.split("/").pop();
+            if (name && name.includes(".")) {
+                a.download = name;
+            }
+        } catch {}
     }
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+export const openURL = (url: string, hasDialog = false) => {
+    // Prefer forceDownload over window.open — browsers block window.open very often
+    forceDownload(url);
 }
 
 export const shareURL = async (url: string) => {
@@ -132,7 +151,7 @@ export const downloadFile = ({ url, file, urlType }: DownloadFileParams) => {
                 return shareURL(url);
             } else if (pref === "download" && device.supports.directDownload
                     && !(device.is.iOS && urlType === "redirect")) {
-                return openURL(url);
+                return forceDownload(url);   // ← changed from openURL
             } else if (pref === "copy" && !file) {
                 return copyURL(url);
             }
