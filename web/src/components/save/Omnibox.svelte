@@ -60,17 +60,14 @@
 
     $effect (() => {
         if (linkPrefill) {
-            // prefilled link may be uri encoded
             linkPrefill = decodeURIComponent(linkPrefill);
 
             if (validLink(linkPrefill)) {
                 $link = linkPrefill;
             }
 
-            // clear hash and query to prevent bookmarking unwanted links
             if (browser) goto("/", { replaceState: true });
 
-            // clear link prefill to avoid extra effects
             linkPrefill = "";
 
             savingHandler({ url: $link });
@@ -92,7 +89,7 @@
         if (linkMatch) {
             $link = linkMatch[0].split('，')[0];
 
-            await tick(); // wait for button to render
+            await tick();
             savingHandler({ url: $link });
         }
     };
@@ -235,14 +232,16 @@
         flex-direction: column;
         max-width: 640px;
         width: 100%;
-        gap: 8px;
+        gap: 10px;
         position: relative;
     }
 
     #input-container {
-        --input-padding: 12px;
+        --input-padding: 13px;
         display: flex;
-        box-shadow: 0 0 0 1.5px var(--input-border) inset;
+        box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.04),
+            0 0 0 1.5px var(--input-border) inset;
         outline: 1.5px solid var(--input-border);
         outline-offset: -1.5px;
         border-radius: calc(var(--border-radius) + 2px);
@@ -250,7 +249,7 @@
         gap: var(--input-padding);
         font-size: 14.5px;
         flex: 1;
-        transition: outline-color 0.15s ease, box-shadow 0.15s ease;
+        transition: outline-color 0.2s ease, box-shadow 0.2s ease;
         background: var(--button);
     }
 
@@ -280,17 +279,19 @@
     }
 
     #input-container.focused {
-        box-shadow: none;
-        outline: var(--secondary) 2px solid;
+        box-shadow:
+            0 0 0 3px var(--accent-soft),
+            0 0 0 1.5px var(--accent) inset;
+        outline: var(--accent) 2px solid;
         outline-offset: -1px;
     }
 
     #input-container.focused :global(#input-icons svg) {
-        stroke: var(--secondary);
+        stroke: var(--accent);
     }
 
     #input-container.downloadable :global(#input-icons svg) {
-        stroke: var(--secondary);
+        stroke: var(--accent);
     }
 
     #link-area {
