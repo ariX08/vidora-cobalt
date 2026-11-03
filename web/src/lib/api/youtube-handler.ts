@@ -1,6 +1,6 @@
 import { get } from "svelte/store";
 import { t } from "$lib/i18n/translations";
-import { downloadFile, openFile, forceDownload } from "$lib/download";
+import { openFile, forceDownload } from "$lib/download";
 import { createDialog } from "$lib/state/dialogs";
 import { downloadButtonState } from "$lib/state/omnibox";
 import settings from "$lib/state/settings";
@@ -85,8 +85,6 @@ export async function handleYouTube(url: string): Promise<boolean> {
 
         const fileUrl = `${YT_API}/api/file/${jobId}`;
 
-        // Fetch as blob so we can trigger a real file download
-        // even after user activation has expired (polling takes time)
         try {
           const fileRes = await fetch(fileUrl);
           if (!fileRes.ok) throw new Error("file fetch failed");
@@ -103,14 +101,26 @@ export async function handleYouTube(url: string): Promise<boolean> {
             type: blob.type || (type === "audio" ? "audio/mpeg" : "video/mp4"),
           });
 
+          // Trigger browser download immediately
           openFile(file);
 
-          // Also offer share/copy dialog without the "browser stopped it" warning
-          return downloadFile({ file });
+          // Show save dialog without the "browser stopped it" warning
+          createDialog({
+            type: "saving",
+            id: "saving",
+            file,
+          });
+
+          return true;
         } catch {
-          // Fallback: open URL directly
           forceDownload(fileUrl, job.filename);
-          return downloadFile({ url: fileUrl, urlType: "redirect" });
+          createDialog({
+            type: "saving",
+            id: "saving",
+            url: fileUrl,
+            urlType: "redirect",
+          });
+          return true;
         }
       }
     }
