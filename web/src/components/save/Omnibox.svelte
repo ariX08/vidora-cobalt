@@ -143,10 +143,6 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
-<!--
-    if you want to remove the community instance label,
-    refer to the license first https://github.com/imputnet/cobalt/tree/main/web#license
--->
 {#if env.DEFAULT_API !== officialApiURL}
     <div id="instance-label">
         {$t("save.label.community_instance")}
@@ -239,23 +235,23 @@
         flex-direction: column;
         max-width: 640px;
         width: 100%;
-        gap: 6px;
+        gap: 8px;
         position: relative;
     }
 
     #input-container {
-        --input-padding: 10px;
+        --input-padding: 12px;
         display: flex;
         box-shadow: 0 0 0 1.5px var(--input-border) inset;
-        /* webkit can't render the 1.5px box shadow properly,
-           so we duplicate the border as outline to fix it visually */
         outline: 1.5px solid var(--input-border);
         outline-offset: -1.5px;
-        border-radius: var(--border-radius);
+        border-radius: calc(var(--border-radius) + 2px);
         align-items: center;
         gap: var(--input-padding);
-        font-size: 14px;
+        font-size: 14.5px;
         flex: 1;
+        transition: outline-color 0.15s ease, box-shadow 0.15s ease;
+        background: var(--button);
     }
 
     #input-container:not(.clear-visible) :global(#clear-button) {
@@ -303,7 +299,7 @@
         margin: 0;
         padding: var(--input-padding) 0;
         padding-left: calc(var(--input-padding) + 28px);
-        height: 18px;
+        height: 20px;
 
         align-items: center;
 
@@ -316,11 +312,10 @@
         flex: 1;
 
         font-weight: 500;
+        letter-spacing: -0.01em;
 
-        /* workaround for safari */
         font-size: inherit;
 
-        /* prevents input from poking outside of rounded corners */
         border-radius: var(--border-radius);
     }
 
@@ -331,11 +326,9 @@
 
     #link-area::placeholder {
         color: var(--gray);
-        /* fix for firefox */
         opacity: 1;
     }
 
-    /* fix for safari */
     input:disabled {
         opacity: 1;
     }
@@ -343,10 +336,8 @@
     #action-container {
         display: flex;
         flex-direction: row;
-    }
-
-    #action-container {
         justify-content: space-between;
+        gap: 8px;
     }
 
     #paste-mobile-text {
@@ -354,15 +345,16 @@
     }
 
     #instance-label {
-        font-size: 13px;
+        font-size: 12.5px;
         color: var(--gray);
         font-weight: 500;
+        letter-spacing: -0.01em;
     }
 
     @media screen and (max-width: 440px) {
         #action-container {
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
         }
 
         #action-container :global(.button) {
