@@ -7,9 +7,15 @@ import type { Component } from "svelte";
 import type { PageLoad } from "./$types";
 import type { DefaultImport } from "$lib/types/generic";
 
+const ALLOWED = new Set(["general", "privacy", "terms"]);
+
 const pages = import.meta.glob("$i18n/*/about/*.md");
 
 export const load: PageLoad = async ({ params }) => {
+    if (!ALLOWED.has(params.page)) {
+        error(404, "Not found");
+    }
+
     const getPage = (locale: string) => Object.keys(pages).find(
         file => file.endsWith(`${locale}/about/${params.page}.md`)
     );
@@ -20,7 +26,7 @@ export const load: PageLoad = async ({ params }) => {
         return { component: (await componentImport()).default }
     }
 
-    error(404, 'Not found');
+    error(404, "Not found");
 };
 
 export const prerender = true;
