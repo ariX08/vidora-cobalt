@@ -66,15 +66,15 @@
 
     .switcher :global(.button.active) {
         pointer-events: none;
-    }
-
-    .switcher :global(.button.active:hover) {
-        background: var(--secondary);
+        color: var(--white);
+        background-color: var(--accent) !important;
+        box-shadow:
+            0 4px 12px -4px rgba(99, 91, 255, 0.4),
+            0 0 0 1px rgba(99, 91, 255, 0.15) inset;
     }
 
     .switcher.big :global(.button) {
         width: 100%;
-        /* [base button height] - ([switcher padding] * [padding factor to accommodate for]) */
         height: calc(40px - var(--switcher-padding) * 2);
         border-radius: calc(var(--border-radius) - var(--switcher-padding));
         box-shadow: none;
@@ -92,7 +92,6 @@
         border-radius: 0;
     }
 
-    /* hack to get rid of double border in a list of switches */
     .switcher:not(.big) :global(:not(.button:first-child)) {
         margin-left: -1px;
     }
