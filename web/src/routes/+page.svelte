@@ -17,13 +17,12 @@
         tabindex="-1"
         data-first-focus
     >
-        <!-- Put your logo here: web/static/logo.webp -->
         <img
             id="vidora-logo"
             src="/logo.webp"
             alt="Vidora"
-            width="160"
-            height="160"
+            width="280"
+            height="280"
         />
         <Omnibox />
     </main>
@@ -46,15 +45,15 @@
         justify-content: center;
         width: 100%;
         height: 100%;
-        gap: 18px;
+        gap: 22px;
     }
 
     #vidora-logo {
-        width: 140px;
+        width: 240px;
         height: auto;
-        max-width: 40vw;
+        max-width: 55vw;
         object-fit: contain;
-        border-radius: 16px;
+        border-radius: 20px;
         user-select: none;
         pointer-events: none;
     }
@@ -85,7 +84,7 @@
         }
 
         #vidora-logo {
-            width: 110px;
+            width: 180px;
         }
 
         #terms-note {
