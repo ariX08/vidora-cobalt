@@ -2,7 +2,6 @@
     import { t } from "$lib/i18n/translations";
 
     import Omnibox from "$components/save/Omnibox.svelte";
-    import Meowbalt from "$components/misc/Meowbalt.svelte";
     import SupportedServices from "$components/save/SupportedServices.svelte";
 </script>
 
@@ -18,7 +17,14 @@
         tabindex="-1"
         data-first-focus
     >
-        <Meowbalt emotion="smile" />
+        <!-- Put your logo here: web/static/logo.webp -->
+        <img
+            id="vidora-logo"
+            src="/logo.webp"
+            alt="Vidora"
+            width="160"
+            height="160"
+        />
         <Omnibox />
     </main>
     <div id="terms-note">
@@ -41,6 +47,16 @@
         width: 100%;
         height: 100%;
         gap: 18px;
+    }
+
+    #vidora-logo {
+        width: 140px;
+        height: auto;
+        max-width: 40vw;
+        object-fit: contain;
+        border-radius: 16px;
+        user-select: none;
+        pointer-events: none;
     }
 
     #terms-note {
@@ -66,6 +82,10 @@
     @media screen and (max-width: 535px) {
         #vidora-save-container {
             padding-top: calc(var(--padding) / 2);
+        }
+
+        #vidora-logo {
+            width: 110px;
         }
 
         #terms-note {
