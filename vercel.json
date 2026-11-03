@@ -1,0 +1,35 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "web": {
+      "root": "web",
+      "framework": "sveltekit"
+    },
+    "api": {
+      "root": ".",
+      "runtime": "container"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api",
+      "destination": {
+        "service": "api",
+        "path": "/"
+      }
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "api",
+        "path": "/$1"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "web"
+      }
+    }
+  ]
+}
