@@ -1,5 +1,5 @@
 {
-    "page.general": "what's Vidora?",
+    "page.general": "about Vidora",
 
     "page.community": "community & support",
 
@@ -9,8 +9,8 @@
 
     "heading.general": "general terms",
     "heading.licenses": "licenses",
-    "heading.summary": "best way to save what you love",
-    "heading.privacy_efficiency": "leading privacy & efficiency",
+    "heading.summary": "save what you love",
+    "heading.privacy_efficiency": "privacy & efficiency",
     "heading.community": "open community",
     "heading.local": "local processing",
     "heading.saving": "saving",
@@ -24,12 +24,12 @@
     "heading.partners": "partners",
 
     "support.github": "check out Vidora's source code, contribute changes, or report issues",
-    "support.discord": "chat with the community and developers about Vidora or ask for help",
-    "support.twitter": "follow Vidora's updates and development on your twitter timeline",
-    "support.telegram": "stay up to date with latest Vidora updates via a telegram channel",
-    "support.bluesky": "follow Vidora's updates and development on your bluesky feed",
+    "support.discord": "chat with the community about Vidora or ask for help",
+    "support.twitter": "follow Vidora updates",
+    "support.telegram": "stay up to date with latest Vidora updates",
+    "support.bluesky": "follow Vidora updates on bluesky",
 
     "support.description.issue": "if you want to report a bug or some other recurring issue, please do it on github.",
-    "support.description.help": "use discord for any other questions. describe the issue properly in #support or else no one will be able help you.",
+    "support.description.help": "use available community channels for any other questions.",
     "support.description.best-effort": "all support is best effort and not guaranteed, a reply might take some time."
 }
